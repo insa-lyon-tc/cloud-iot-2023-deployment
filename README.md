@@ -50,12 +50,11 @@ Lors de ce projet les tâches ont été réparties comme suit :
 ### Suivi journalier
 
 **Vendredi 13/10/2023** :
-- 
-- 
-- 
-- 
-- 
-- 
+- Introduction du projet Cloud-IoT
+- Mise en place des équipes
+- Création des comptes Youpi et premières connections aux Raspberry Pi à l'aide des clés SSH
+- Création d'un serveur Discord avec des channels pour la communication
+- Création d'un board Trello pour chaque équipe pour la gestion de projet
 
 **Lundi 16/10/2023** :
 - 

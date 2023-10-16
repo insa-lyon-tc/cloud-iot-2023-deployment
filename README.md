@@ -57,12 +57,12 @@ Lors de ce projet les tâches ont été réparties comme suit :
 - Création d'un board Trello pour chaque équipe pour la gestion de projet
 
 **Lundi 16/10/2023** :
-- 
-- 
-- 
-- 
-- 
-- 
+- L'équipe Capteurs a réussi à récupérer des images depuis les 3 caméras fonctionnelles (sur 5). L'équipe a fait le choix du protocole MQTT.
+- L'équipe Messaging a installé Californium et RabbitMQ mais opte finalement pour cette dernière solution. La séance a été principalement dédiée à la documentation.
+- L'équipe Reactive Streaming a commencé à mettre en place Kafka (au détriment de Vert.X qui ne supporte pas Python) et a commencé à discuter avec les groupes en aval et en amont afin de cerner au mieux ses problématiques et ses enjeux.
+- L'équipe Storage Computation s'est documenté sur la manière de mettre en place et tester ses systèmes distribués (base de données et application de traitement d'image), après discussion avec l'équipe Reactive Streaming.
+- L'équipe Deployement a commencé à instancier des services avec k3s afin de déployer au mieux les services des autres équipes.
+- Une présentation suivi de quelques questions, le tout pour un total de 5 minutes par équipe à été réalisé à la fin de la séance (environ 30 min au total) afin que tout le monde puisse comprendre les enjeux et les difficultés techniques de l'ensemble du projet.
 
 **Mercredi 18/10/2023** :
 - 

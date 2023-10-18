@@ -1,0 +1,12 @@
+---
+- hosts: 'master, workers'
+  become: true  # run tasks as root
+
+  tasks:
+    - name: Uninstall k3s server
+      command: /usr/local/bin/k3s-uninstall.sh
+      ignore_errors: true
+
+    - name: Uninstall k3s agent
+      command: /usr/local/bin/k3s-agent-uninstall.sh
+      ignore_errors: true

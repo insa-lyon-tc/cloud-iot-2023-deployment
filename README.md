@@ -12,13 +12,35 @@ Dans ce fichier `README.md` vous devez décrire en format Markdown chacune des �
 
 Notre équipe projet est composée par :
 
-- Prénom NOM (Rôle)
-- 
-- 
-- 
+- Vivekananda Boudia (Sensors)
+- Zoé Batello (Sensors)
+
+- Chakib Hamie (Messaging)
+- Abdeladem Fattah (Messaging)
+- Mohamed Bouzoubaa(Messaging)
+- Adrianos Sidiras-Galante (Messaging)
+
+- Nabil Azakkour (Reactive Streaming)
+- Zihao Wan (Reactive Streaming)
+- Khadija Ly(Reactive Streaming)
+- Zhenglin Jiang (Reactive Streaming)
+
+- Hiba Bellagnech (Storage)
+- Salah Idbelouch (Computing)
+- Safae Hariri(Computing)
+
+- Morgan Clot (DevOps)
+- Etienne Brunel (DevOps)
+- Hugo Thomas (DevOps)
+- Abdellah Kabbaj (DevOps)
+
+- Armand Prioreschi (Project manager and Storage)
+- Alice Gangneux (Project manager and Sensors)
+
 
 ## Description du Projet
 
+Traitement d'images
 
 
 ### Infrastructure
@@ -43,9 +65,13 @@ Les noeuds sont à réserver sur le site web de la plateforme.
 ## Répartition des tâches
 Lors de ce projet les tâches ont été réparties comme suit :
 
-- 
-- 
-- 
+- Equipe Sensors 
+- Equipe Messaging 
+- Equipe Reactive Streaming
+- Equipe Storage
+- Equipe Computing
+- Equipe Deployment 
+
 
 ### Suivi journalier
 
@@ -65,12 +91,21 @@ Lors de ce projet les tâches ont été réparties comme suit :
 - Une présentation suivi de quelques questions, le tout pour un total de 5 minutes par équipe à été réalisé à la fin de la séance (environ 30 min au total) afin que tout le monde puisse comprendre les enjeux et les difficultés techniques de l'ensemble du projet.
 
 **Mercredi 18/10/2023** :
-- 
-- 
-- 
-- 
-- 
-- 
+- L’équipe Capteurs s’est penchée sur la transmission de messages MQTT. En collaboration avec l’équipe Messaging. Ils ont pu mettre en place un broker Rabbit MQ sur un Raspberry et lui envoyer des messages depuis un autre Raspberry (client). L’équipe a réussi à envoyer des messages simples (string), mais également des images avec une faible résolution. Elle a pour objectif maintenant de réfléchir à la manière d’envoyer des images avec une meilleure résolution (discussions sur la compression ou le découpage des images à envoyer).
+ - L’équipe Messaging a donc travaillé avec l’équipe Capteurs pour établir la communication et a pour objectif pour la prochaine séance de déployer Rabbit MQ sur plusieurs nœuds.
+ - L’équipe Reactive Streaming a réussi à déployer Kafka sur un seul nœud sur lequel leur code Python fonctionne bien. Il faut maintenant réussir à distribuer ces fonctionnalités sur plusieurs nœuds. L’équipe va également devoir utiliser un broker et leur choix s’est porté sur ZooKeeper.
+ - L’équipe Storage voulait réussir lors de cette séance à réaliser un réplica set avec MongoDB. Malheureusement, l’équipe a eu des problèmes de configurations et n’a pas réussi à faire fonctionner MongoDB. L’idéal serait d’installer Mongo DB ave Image Docker pour faciliter le travail de l’équipe de déploiement.
+ - L’équipe Computing a un code fonctionnel qui détecte bien les personnes, basé sur le module de YOLO qui est pré-entrainé. Leur prochain objectif est de faire la conversion du modèle à TensorFlow.
+ - L’équipe Déploiement a set up un cluster Kubernetes avec Ansible. Les prochaines étapes sont de déployer une application dans ce cluster et de monter en compétences sur Ansible.  Ils rappellent aux autres équipes que la communication avec eux est très importante dès maintenant, notamment l’équipe Storage (support Docker).
+ - Les chefs de projet ont rappelé que l’objectif était que chaque équipe ait sa partie du projet fonctionnelle à la fin de la prochaine séance qui est dans un mois (13 novembre) et qui laisse donc le temps aux équipes qui ont rencontré des difficultés d’avancer pendant les vacances notamment et/ou d’appeler à l’aide si cet objectif leur parait vraiment difficile à atteindre.  Ceci est dans le but de pouvoir avoir un maximum de temps lors des prochaines séances pour pouvoir faire l’intégration.
+
+**Lundi 13/11/2023**:
+-
+-
+-
+-
+-
+-
 
 **Vendredi 26/01/2024** :
 - 

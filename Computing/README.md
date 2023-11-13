@@ -1,1 +1,1 @@
-
+-- Script bash pour l'instalation à venir -- 

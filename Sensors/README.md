@@ -27,4 +27,24 @@ Raspberry 3B | 10.0.1.15 | b8:27:eb:8b:c7:15 |a405 694 | Camera ✅
 - in another terminal : scp <username>@<address>:/home/<username>/<pathToImage>image.jpg
 
 ### Techno used
-- MQTT (pip install paho-mqtt and pip install pika) 
+- MQTT (pip install paho-mqtt and pip install pika)
+
+### Client
+- Install paho-mqtt : 
+sudo apt update
+sudo apt-get install python3-pip
+pip3 install paho-mqtt
+
+### Broker
+- Install mpaho-mqtt : 
+sudo apt update
+sudo apt-get install python3-pip
+pip3 install paho-mqtt
+- Install Rabbit MQ : 
+sudo apt-get update
+sudo apt-get install rabbitmq-server
+- Start Rabbit MQ : 
+sudo service rabbitmq-server start
+- Activation plugin mqtt : 
+sudo rabbitmq-plugins enable rabbitmq_mqtt
+sudo service rabbitmq-server restart

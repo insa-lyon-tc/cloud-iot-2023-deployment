@@ -29,7 +29,7 @@ mqttc.on_connect = on_connect
 mqttc.on_publish = on_publish
 mqttc.on_subscribe = on_subscribe
 
-url = "10.0.1.10"
+url = "10.0.1.13"
 port = 1883
 topic = "test"
 mqttc.username_pw_set("cit","cit")

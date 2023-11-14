@@ -100,12 +100,14 @@ Lors de ce projet les tâches ont été réparties comme suit :
  - Les chefs de projet ont rappelé que l’objectif était que chaque équipe ait sa partie du projet fonctionnelle à la fin de la prochaine séance qui est dans un mois (13 novembre) et qui laisse donc le temps aux équipes qui ont rencontré des difficultés d’avancer pendant les vacances notamment et/ou d’appeler à l’aide si cet objectif leur parait vraiment difficile à atteindre.  Ceci est dans le but de pouvoir avoir un maximum de temps lors des prochaines séances pour pouvoir faire l’intégration.
 
 **Lundi 13/11/2023**:
--
--
--
--
--
--
+La dernière séance était il y a un mois, nous avons donc fait un rappel de l’architecture globale du projet et fait un point sur les avancées de certains groupes lors de ce mois, notamment l’équipe Storage qui a réussi à régler son problème d’installation.
+- L’équipe Capteurs a réussi à envoyer des images compressées au broker. La taille des images envoyées est donc passée de 4Mo à 250ko. L’équipe a commencé un script pour automatiser la prise d’image mais elle a besoin de savoir combien d’images doivent être envoyées et tous les combien de temps. Elle a précisé à l’ensemble du groupe les 3 Raspberry utilisés (ceux reliés aux caméras). Elle n’envoie pas d’images à l’équipe messaging mais des images encodées en base 64 (string). Elle a communiqué ses besoins à l’équipe Déploiement. 
+- L’équipe Messaging a écrit un script Bash pour l’installation et la mise en cluster. Il faut maintenant les placer sur les Raspberry. Pour l’instant, il n’y a pas de Gateway dans Rabbit MQ. L’équipe regarde les options pour mettre en place du mirroring sur les 3 nœuds. L’équipe est en train d'explorer la possibilité de définir la taille du buffer d'entrée. Actuellement, il n'y a pas de limite pour ce que nous envoyons, mais il est nécessaire de prendre en compte la capacité du réseau afin de ne pas le saturer. Le cluster est configuré mais n’a pas encore été testé. 
+- L’équipe Reactive streaming a distribué les brokers (3 noeuds Zookeepers en architecture master/slave). Ils doivent maintenant “kafka-iser” les différents services. Elle a communiqué ses besoins à l’équipe Déploiement. 
+- L’équipe Computing a mis en place un cluster avec une architecture master/slave avec 3 Raspberry.  Le but est de distribuer le travail entre plusieurs Raspberry (chaque Raspberry travaille sur un certain nombre d’images). Elle a fait la documentation pour l’équipe Déploiement. Il leur reste à voir comment envoyer leurs résultats à l’équipe Reactive streaming. 
+- L’équipe Storage a réussi à résoudre son problème d’installation en passant les OS des Raspberry de 32 à 64 bits. Elle est en tain de mettre en place des réplicas sets mais doit déjà réussir à faire communiquer les Raspberry entre eux. Elle doit donc réussir à faire ça pour la prochaine séance. Elle a travaillé avec l’équipe Déploiement. 
+- L’équipe Déploiement a conteneurisé les applications Kafka et Zookeeper. Il leur reste à régler le problème de la gestion des IP si un nœud tombe, avec K3s. Ils mettent également en place plusieurs serveurs pour ne pas avoir de problèmes si le serveur tombe.  Ansible sera utilisé pour les parties capteurs et messaging, car ça ne peut pas être dockerisé car ils ont besoin d’accéder au hardware. 
+Chaque partie indépendante doit donc être terminée pour la prochaine séance qui a lieu dans 2 mois (26 janvier) ET doit également communiquer avec les parties précédentes et suivantes (et avec l’équipe déploiement) pour commencer les tests le plus rapidement possible à la prochaine séance. 
 
 **Vendredi 26/01/2024** :
 - 

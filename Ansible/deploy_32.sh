@@ -4,4 +4,4 @@
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-ansible-playbook -i "$SCRIPT_DIR/inventory/hosts_32.yml" "$SCRIPT_DIR/playbooks/32/deploy_all.yml"
+cd "$SCRIPT_DIR" && ansible-playbook -i "$SCRIPT_DIR/inventory/hosts_32.ini" "$SCRIPT_DIR/playbooks/32/deploy_all.yml"

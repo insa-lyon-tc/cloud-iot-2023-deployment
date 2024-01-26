@@ -1,0 +1,10 @@
+---
+cluster_32:
+  children:
+    server:
+      hosts:
+        10.0.1.118:
+    agent:
+      hosts:
+        10.0.1.119:
+        10.0.1.181:

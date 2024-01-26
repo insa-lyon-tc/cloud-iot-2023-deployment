@@ -1,0 +1,37 @@
+---
+- name: Create mongo namespace
+  kubernetes.core.k8s:
+    state: present
+    api_version: v1
+    kind: Namespace
+    name: mongo
+
+- name: Deploy MongoDB
+  block:
+    - name: Apply stateful set
+      kubernetes.core.k8s:
+        state: present
+        template: "mongo-statefulset.yml.j2"
+
+    - name: Wait for all pods to be ready
+      become: true
+      shell: kubectl get statefulset "mongo" -n "mongo" -o jsonpath='{.status.readyReplicas}{" "}{.status.replicas}' 2>/dev/null
+      register: result
+      until: result.stdout.split() | length > 1 and result.stdout.split()[0] == result.stdout.split()[1]
+      retries: 30
+      delay: 10
+
+    - name: Apply headless service
+      kubernetes.core.k8s:
+        state: present
+        template: "mongo-headless-service.yml.j2"
+
+    - name: Apply service
+      kubernetes.core.k8s:
+        state: present
+        template: "mongo-service.yml.j2"
+
+    - name: Apply initialization job
+      kubernetes.core.k8s:
+        state: present
+        template: "mongo-init-job.yml.j2"

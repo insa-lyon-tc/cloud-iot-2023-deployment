@@ -1,0 +1,6 @@
+---
+- name: Setup MongoDB cluster
+  hosts: server
+  run_once: true
+  roles:
+    - role: mongo

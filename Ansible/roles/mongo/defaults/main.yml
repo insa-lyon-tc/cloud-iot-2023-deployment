@@ -1,0 +1,4 @@
+---
+mongo_version: 4.4.18
+mongo_port: 27017
+mongo_storage: 5Gi

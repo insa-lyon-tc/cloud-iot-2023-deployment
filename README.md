@@ -110,19 +110,16 @@ La dernière séance était il y a un mois, nous avons donc fait un rappel de l�
 Chaque partie indépendante doit donc être terminée pour la prochaine séance qui a lieu dans 2 mois (26 janvier) ET doit également communiquer avec les parties précédentes et suivantes (et avec l’équipe déploiement) pour commencer les tests le plus rapidement possible à la prochaine séance. 
 
 **Vendredi 26/01/2024** :
-- 
-- 
-- 
-- 
-- 
-- 
+- Capteurs : Envoi des données sur le broker rabbit MQ, en train finir le deploiement (nombre de noeuds)
+- Messaging : Interconnection react streaming ok et capteurs ok. Travail sur deploiement, voir si ca sert a clusteriser, travailler avec un seul noeud.
+- Reactive Streaming : 2 pi flashés en 64 bits donc reinstall. Recuperation de la premiere image. Recuperation des images en cours, depuis la bdd distribuee
+- Storage : Storage des images en b64 + en train de connecter la bdd a un site pour afficher les images
+- Computing : En cours de déploiement avec k3s. En train de connecter à Kafka. 
+- Deploiement : Deploiement kafka et zooker fonctionnel avec k3s, données repliquées. En train de deployer spark et tensorflow. MongoDB deployé. Rabbit MQ
 
 **Mardi 30/01/2024** :
-- 
-- 
-- 
-- 
-- 
+- Résumé de la séance : 
+![My Image](CR_30_01_2024.jpg)
 
 **Mercredi 31/01/2024** :
 - 

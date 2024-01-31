@@ -122,12 +122,15 @@ Chaque partie indépendante doit donc être terminée pour la prochaine séance 
 ![My Image](CR_30_01_2024.jpg)
 
 **Mercredi 31/01/2024** :
-- 
-- 
-- 
-- 
-- 
+- L'équipe capteurs a terminé sa partie. Il reste à voir un détail sur le choix de la QoS. Meilleure est la QoS, plus le temps d'envoi est long et donc cela dépend du temps nécessaire pour le traitement de l'image. Il y a le choix entre 3 niveaux de QoS (0,1 ou 2). Les scripts à jour sont sur Discord.
+- Le déploiement est terminé pour l'équipe messaging. 
+- Reactive streaming. Le déploiement du cluster Kafka est terminé. Interfaçage entre Messaging et Kafka est fait. Service de stockage sur la BDD mis en place mais pas encore déployé. Service computing en cours mais pas encore mis au point. On attend pour le déploiement des services. Service affichage est fait et le site déployé pour permettre d’afficher les images à la volée. Il reste à faire la connexion avec la BDD.
+- L'équipe de stockage est en train de voir si le service fonctionne bien avec l'équipe de reactive streaming. On a une chaîne de bout en bout qui va de l'envoi des images par les capteurs au stockage de ces images dans la base de données. Il reste le déploiement. 
+- L'équipe computing doit faire la connexion avec Kafka. 
+- L'équipe déploiement a déployée le front et est en train de déployer Spark. 
+- Rappel que la soutenance est vendredi à 10h, pas de pression, on se sert du schéma au tableau et chaque équipe présente le travail fait + démonstration. 
 
+![My Image](CR_31_01_2024.jpg)
 **Soutenance 02/02/2024** :
 - 
 - 

@@ -3,6 +3,10 @@
   become: true
   shell: kubectl delete service --all -n kafka
 
+- name: Delete kafka deployments
+  become: true
+  shell: kubectl delete deployment --all -n kafka
+
 - name: Delete kafka statefulset
   become: true
   shell: kubectl delete statefulset --all -n kafka

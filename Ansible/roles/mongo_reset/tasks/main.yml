@@ -7,6 +7,10 @@
   become: true
   shell: kubectl delete service --all -n mongo
 
+- name: Delete mongo deployments
+  become: true
+  shell: kubectl delete deployment --all -n mongo
+
 - name: Delete mongo statefulset
   become: true
   shell: kubectl delete statefulset --all -n mongo

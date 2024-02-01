@@ -1,6 +1,0 @@
----
-- name: Reset apps
-  hosts: server
-  run_once: true
-  roles:
-    - mongo_reset

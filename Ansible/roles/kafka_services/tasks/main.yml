@@ -1,0 +1,10 @@
+---
+- name: Apply RabbitMQ-Kafka deployment
+  kubernetes.core.k8s:
+    state: present
+    definition: "{{ lookup('file', 'rabbitmq-kafka-deployment.yml') | from_yaml }}"
+
+- name: Apply Mongo-Kafka deployment
+  kubernetes.core.k8s:
+    state: present
+    definition: "{{ lookup('file', 'mongo-kafka-deployment.yml') | from_yaml }}"

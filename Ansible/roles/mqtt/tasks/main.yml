@@ -1,0 +1,79 @@
+---
+- name: Config raspberry pi
+  block:
+    - name: Add root to video group
+      user:
+        name: root
+        groups: video
+        append: true
+      become: true
+
+    - name: Install required packages
+      apt:
+        name:
+          - python3-pip
+          - libopenjp2-7
+          - libtiff5
+        state: present
+        update_cache: true
+      become: true
+
+    - name: Install required python libraries
+      become: true
+      pip:
+        name:
+          - pexpect
+          - paho-mqtt
+          - picamera
+          - python-dotenv
+          - Pillow
+
+    - name: Activate camera with raspi-config
+      become: true
+      expect:
+        command: "raspi-config nonint do_camera 0"
+        responses:
+          "Enter": ""
+          "Select": "P1"
+          "Finish": ""
+
+- name: Copy the python script and add cron job
+  block:
+    - name: Create and set permissions on target dir
+      become: true
+      file:
+        path: /var/mqtt
+        state: directory
+        mode: 0755
+        owner: root
+        recurse: true
+
+    - name: Copy script
+      become: true
+      copy:
+        src: main.py
+        dest: /var/mqtt/
+        owner: root
+
+    - name: Copy dotenv file
+      become: true
+      copy:
+        src: .env
+        dest: /var/mqtt/
+        owner: root
+
+    - name: Copy service
+      become: true
+      copy:
+        src: mqtt.service
+        dest: /etc/systemd/system/
+        owner: root
+        mode: 0644
+
+    - name: Enable and wait for service
+      become: true
+      systemd:
+        name: mqtt
+        daemon_reload: true
+        state: started
+        enabled: true

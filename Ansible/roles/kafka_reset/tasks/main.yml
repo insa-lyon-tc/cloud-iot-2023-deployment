@@ -1,0 +1,32 @@
+---
+- name: Delete kafka services
+  become: true
+  shell: kubectl delete service --all -n kafka
+
+- name: Delete kafka statefulset
+  become: true
+  shell: kubectl delete statefulset --all -n kafka
+
+- name: Delete kafka pods
+  become: true
+  shell: kubectl delete pod --all -n kafka
+
+- name: Delete kafka pvc
+  become: true
+  shell: kubectl delete pvc --all -n kafka
+
+- name: Delete zookeeper services
+  become: true
+  shell: kubectl delete service --all -n kafka
+
+- name: Delete zookeeper statefulset
+  become: true
+  shell: kubectl delete statefulset --all -n kafka
+
+- name: Delete zookeeper pods
+  become: true
+  shell: kubectl delete pod --all -n kafka
+
+- name: Delete zookeeper pvc
+  become: true
+  shell: kubectl delete pvc --all -n kafka

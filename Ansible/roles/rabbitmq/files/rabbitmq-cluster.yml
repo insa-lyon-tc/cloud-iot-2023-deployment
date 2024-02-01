@@ -1,0 +1,21 @@
+---
+apiVersion: rabbitmq.com/v1beta1
+kind: RabbitmqCluster
+metadata:
+  labels:
+    app: rabbitmq
+  name: rabbitmq
+  namespace: rabbitmq-system
+spec:
+  replicas: 3
+  service:
+    type: ClusterIP
+  persistence:
+    storage: 5Gi
+  rabbitmq:
+    additionalPlugins:
+      - rabbitmq_mqtt
+    additionalConfig: |
+      log.console.level = info
+      default_user = admin
+      default_pass = admin

@@ -1,0 +1,13 @@
+---
+- name: Reset k3s apps
+  hosts: master
+  run_once: true
+  roles:
+    # - role: rabbitmq_reset
+    # - role: kafka_reset
+    - role: mongo_reset
+
+# - name: Reset camera nodes
+#   hosts: mqtt
+#   roles:
+#     - role: mqtt_reset

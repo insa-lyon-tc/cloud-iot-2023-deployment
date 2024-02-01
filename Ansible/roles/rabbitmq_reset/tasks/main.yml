@@ -1,0 +1,25 @@
+---
+- name: Delete rabbitmq deployments
+  become: true
+  shell: kubectl delete deployment --all -n rabbitmq-system
+
+- name: Delete rabbitmq services
+  become: true
+  shell: kubectl delete service --all -n rabbitmq-system
+
+- name: Delete rabbitmq clusters
+  become: true
+  shell: kubectl delete rabbitmqcluster.rabbitmq.com --all -n rabbitmq-system
+  ignore_errors: true
+
+- name: Delete rabbitmq statefulsets
+  become: true
+  shell: kubectl delete statefulset --all -n rabbitmq-system
+
+- name: Delete rabbitmq pods
+  become: true
+  shell: kubectl delete pod --all -n rabbitmq-system
+
+- name: Delete rabbitmq pvc
+  become: true
+  shell: kubectl delete pvc --all -n rabbitmq-system

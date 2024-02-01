@@ -1,12 +1,12 @@
-# Deploy the CIT project on two kubernetes clusters (64 and 32 bits)
+# Deploy the CIT project on a HA Load Balanced k3s cluster
 
-Based on: <https://github.com/k3s-io/k3s-ansible>
+Based on: <https://github.com/techno-tim/k3s-ansible>
 
 ## Usage
 
 Replace the `ansible_user` field in `inventory/group_vars/all.yml` by your username on the machines you will use.
 
-Change the inventories `inventory/hosts_64.ini` and `inventory/hosts_32.ini` to include the machines on which you want to deploy the cluster.
+Change the inventories `inventory/hosts.ini` file to include the machines on which you want to deploy the cluster. The 
 
 Use the scripts `deploy_32.sh` `deploy_64.sh` `deploy_all.sh` to conveniently deploy respectively the 32 bits cluster, the 64 bits cluster or both (with their apps).
 

@@ -1,3 +1,4 @@
+---
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -12,5 +13,16 @@ spec:
           command: ["bash", "-c"]
           args:
             - |
-              mongo mongo-0.mongo:{{ mongo_port }} --eval "printjson(rs.initiate({_id: 'rs0', members: [{_id: 0, host: 'mongo-0.mongo:{{ mongo_port }}'}, {_id: 1, host: 'mongo-1.mongo:{{ mongo_port }}'}, {_id: 2, host: 'mongo-2.mongo:{{ mongo_port }}'}]}))"
+              mongo mongo-0.mongo:{{ mongo_port }} --eval "rs.initiate({_id: 'rs0', members: [{_id: 0, host: 'mongo-0.mongo:{{ mongo_port }}'}, {_id: 1, host: 'mongo-1.mongo:{{ mongo_port }}'}, {_id: 2, host: 'mongo-2.mongo:{{ mongo_port }}'}]})";
+              mongo mongo-0.mongo:{{ mongo_port }} --eval "db.runCommand({create: 'cit'})";
+              mongo mongo-0.mongo/cit:{{ mongo_port }} --eval "db.createCollection('CIT_CAMERA_1')";
+              mongo mongo-0.mongo/cit:{{ mongo_port }} --eval "db.createCollection('CIT_CAMERA_2')";
+              mongo mongo-0.mongo/cit:{{ mongo_port }} --eval "db.createCollection('CIT_CAMERA_3')";
+              mongo mongo-0.mongo/cit:{{ mongo_port }} --eval "db.createCollection('CIT_CAMERA_4')";
+              mongo mongo-0.mongo/cit:{{ mongo_port }} --eval "db.createCollection('CIT_CAMERA_5')";
+              mongo mongo-0.mongo/cit:{{ mongo_port }} --eval "db.createCollection('CIT_CAMERA_PROCESSED_1')";
+              mongo mongo-0.mongo/cit:{{ mongo_port }} --eval "db.createCollection('CIT_CAMERA_PROCESSED_2')";
+              mongo mongo-0.mongo/cit:{{ mongo_port }} --eval "db.createCollection('CIT_CAMERA_PROCESSED_3')";
+              mongo mongo-0.mongo/cit:{{ mongo_port }} --eval "db.createCollection('CIT_CAMERA_PROCESSED_4')";
+              mongo mongo-0.mongo/cit:{{ mongo_port }} --eval "db.createCollection('CIT_CAMERA_PROCESSED_5')";
       restartPolicy: Never

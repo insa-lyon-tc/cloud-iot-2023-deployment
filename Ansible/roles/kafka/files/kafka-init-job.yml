@@ -1,0 +1,25 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kafka-init
+  namespace: kafka
+spec:
+  template:
+    spec:
+      containers:
+        - name: kafka-init-container
+          image: bitnami/kafka:3.3-debian-11
+          command: ["bash", "-c"]
+          args:
+            - kafka-topics.sh --create --topic CIT_CAMERA_1 --bootstrap-server kafka-0.kafka:9092 --replication-factor 3 --partitions 4;
+              kafka-topics.sh --create --topic CIT_CAMERA_2 --bootstrap-server kafka-0.kafka:9092 --replication-factor 3 --partitions 4;
+              kafka-topics.sh --create --topic CIT_CAMERA_3 --bootstrap-server kafka-0.kafka:9092 --replication-factor 3 --partitions 4;
+              kafka-topics.sh --create --topic CIT_CAMERA_4 --bootstrap-server kafka-0.kafka:9092 --replication-factor 3 --partitions 4;
+              kafka-topics.sh --create --topic CIT_CAMERA_5 --bootstrap-server kafka-0.kafka:9092 --replication-factor 3 --partitions 4;
+              kafka-topics.sh --create --topic CIT_CAMERA_PROCESSED_1 --bootstrap-server kafka-0.kafka:9092 --replication-factor 3 --partitions 4;
+              kafka-topics.sh --create --topic CIT_CAMERA_PROCESSED_2 --bootstrap-server kafka-0.kafka:9092 --replication-factor 3 --partitions 4;
+              kafka-topics.sh --create --topic CIT_CAMERA_PROCESSED_3 --bootstrap-server kafka-0.kafka:9092 --replication-factor 3 --partitions 4;
+              kafka-topics.sh --create --topic CIT_CAMERA_PROCESSED_4 --bootstrap-server kafka-0.kafka:9092 --replication-factor 3 --partitions 4;
+              kafka-topics.sh --create --topic CIT_CAMERA_PROCESSED_5 --bootstrap-server kafka-0.kafka:9092 --replication-factor 3 --partitions 4;
+      restartPolicy: Never

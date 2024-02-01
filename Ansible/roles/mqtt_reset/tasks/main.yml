@@ -1,0 +1,17 @@
+---
+- name: Disable service
+  become: true
+  systemd:
+    name: "mqtt"
+    state: stopped
+    enabled: false
+  failed_when: false
+
+- name: Remove service file and script directory
+  become: true
+  file:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - /var/mqtt/
+    - /etc/systemd/system/mqtt.service

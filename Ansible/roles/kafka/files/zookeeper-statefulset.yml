@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: crs-zookeeper
+  namespace: kafka
+spec:
+  replicas: 3
+  serviceName: zookeeper-cluster
+  selector:
+    matchLabels:
+      app: zookeeper-cluster
+  template:
+    metadata:
+      labels:
+        component: zookeeper-cluster
+        app: zookeeper-cluster
+    spec:
+      containers:
+        - name: crs-zookeeper
+          image: bitnami/zookeeper:3.9-debian-11
+          securityContext:
+            runAsUser: 0
+          ports:
+            - containerPort: 2181
+            - containerPort: 2888
+            - containerPort: 3888
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - "sh"
+                  - "-c"
+                  - >
+                    echo $(( $(cat /etc/hosts | grep zookeeper | awk '{print($3)}' | awk '{split($0,array,"-")} END{print array[3]}') + 1 )) > /bitnami/zookeeper/data/myid
+          env:
+            - name: ALLOW_ANONYMOUS_LOGIN
+              value: "yes"
+            - name: ZOO_SERVERS
+              value: crs-zookeeper-0.zookeeper-cluster:2888:3888,crs-zookeeper-1.zookeeper-cluster:2888:3888,crs-zookeeper-2.zookeeper-cluster:2888:3888

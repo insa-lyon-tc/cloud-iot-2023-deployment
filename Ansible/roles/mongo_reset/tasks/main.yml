@@ -18,12 +18,3 @@
 - name: Delete mongo pvc
   become: true
   shell: kubectl delete pvc --all -n mongo
-
-- name: Delete mongo pv
-  become: true
-  shell: kubectl delete pv --all -n mongo
-
-- name: Delete mongo namespace
-  become: true
-  shell: kubectl delete namespace mongo
-  ignore_errors: true

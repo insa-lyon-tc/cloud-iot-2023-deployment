@@ -1,0 +1,3 @@
+---
+- import_playbook: reset_apps.yml
+- import_playbook: reset_cluster.yml

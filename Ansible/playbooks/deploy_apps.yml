@@ -1,0 +1,13 @@
+---
+- name: Setup k3s apps
+  hosts: master
+  run_once: true
+  roles:
+    - role: mongo
+    # - role: kafka
+    # - role: rabbitmq
+
+# - name: Setup camera nodes
+#   hosts: mqtt
+#   roles:
+#     - role: mqtt

@@ -1,0 +1,22 @@
+---
+- name: Install RabbitMQ cluster operator
+  become: true
+  shell: kubectl apply -f https://github.com/rabbitmq/cluster-operator/releases/latest/download/cluster-operator.yml
+
+- name: Apply RabbitMQ load balancer service
+  kubernetes.core.k8s:
+    state: present
+    definition: "{{ lookup('file', 'rabbitmq-lb-service.yml') | from_yaml }}"
+
+- name: Apply RabbitMQ cluster
+  kubernetes.core.k8s:
+    state: present
+    definition: "{{ lookup('file', 'rabbitmq-cluster.yml') | from_yaml }}"
+
+- name: Wait for all pods to be ready
+  become: true
+  shell: kubectl get statefulset "rabbitmq-server" -n "rabbitmq-system" -o jsonpath='{.status.readyReplicas}{" "}{.status.replicas}' 2>/dev/null
+  register: result
+  until: result.stdout.split() | length > 1 and result.stdout.split()[0] == result.stdout.split()[1]
+  retries: 60
+  delay: 15

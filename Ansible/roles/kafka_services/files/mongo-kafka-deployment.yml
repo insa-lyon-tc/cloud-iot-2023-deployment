@@ -1,0 +1,28 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-kafka-service
+  namespace: mongo
+spec:
+  selector:
+    matchLabels:
+      app: mongo-kafka-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mongo-kafka-service
+    spec:
+      containers:
+      - name: main
+        image: dhub.ox/cit_mongo_kafka_service:1.0
+        env:
+          - name: KAFKA_CLUSTER_IP
+            value: "kafka.kafka.svc.cluster.local"
+          - name: KAFKA_CLUSTER_PORT
+            value: "9092"
+          - name: MONGO_CLUSTER_IP
+            value: "mongo.mongo.svc.cluster.local"
+          - name: MONGO_CLUSTER_PORT
+            value: "27017"

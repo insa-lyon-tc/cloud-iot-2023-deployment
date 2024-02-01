@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,16 +15,16 @@ spec:
         app: cit-front
     spec:
       containers:
-      - name: cit-front
-        image: morgandoc07/cit-front:latest
-        imagePullPolicy: Always
-        ports:
-          - containerPort: 8080
+        - name: cit-front
+          image: dhub.ox/cit-front:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-service
+  name: cit-front
   namespace: kafka
 spec:
   selector:
@@ -31,6 +32,5 @@ spec:
   ports:
     - protocol: TCP
       port: 8080
-      #nodePort: 30272
       targetPort: 3000
   type: LoadBalancer

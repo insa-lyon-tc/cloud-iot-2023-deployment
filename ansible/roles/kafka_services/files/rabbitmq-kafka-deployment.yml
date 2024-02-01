@@ -15,10 +15,10 @@ spec:
         app: rabbitmq-kafka-service
     spec:
       containers:
-      - name: cit-srv-kafka
-        image: dhub.ox/cit_rabbitmq_kafka_service:1.2
-        env:
-          - name: KAFKA_SERVER
-            value: "kafka.kafka.svc.cluster.local:9092"
-          - name: MQTT_SERVER
-            value: "rabbitmq.rabbitmq-system.svc.cluster.local"
+        - name: cit-srv-kafka
+          image: dhub.ox/cit_rabbitmq_kafka_service:1.2
+          env:
+            - name: KAFKA_SERVER
+              value: "kafka.kafka.svc.cluster.local:9092"
+            - name: MQTT_SERVER
+              value: "rabbitmq.rabbitmq-system.svc.cluster.local"

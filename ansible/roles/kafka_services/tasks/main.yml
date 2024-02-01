@@ -8,3 +8,8 @@
   kubernetes.core.k8s:
     state: present
     definition: "{{ lookup('file', 'mongo-kafka-deployment.yml') | from_yaml }}"
+
+- name: Apply cit-front deployment
+  kubernetes.core.k8s:
+    state: present
+    definition: "{{ lookup('file', 'cit-front-deployment.yml') | from_yaml }}"

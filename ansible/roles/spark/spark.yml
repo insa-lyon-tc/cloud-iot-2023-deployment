@@ -1,0 +1,133 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: spark-master-service
+  namespace: spark
+spec:
+  selector:
+    app: spark-master-service
+  ports:
+  - name: ui
+    protocol: TCP
+    port: 8080
+    targetPort: 8080
+  - name: spark
+    protocol: TCP
+    port: 7077
+    targetPort: 7077
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: spark-master
+  namespace: spark
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spark-master-service
+  template:
+    metadata:
+      labels:
+        app: spark-master-service
+    spec:  
+#      affinity:
+#        nodeAffinity:
+#          requiredDuringSchedulingIgnoredDuringExecution:
+#            nodeSelectorTerms:
+#            - matchExpressions:
+#              - key: node
+#                operator: In
+#                values:
+#                - "181"
+      containers:
+      - name: spark-master
+        image: morgandoc07/our-own-apache-spark:3.4.0
+        ports:
+        - name: ui
+          protocol: TCP
+          containerPort: 8080
+        - name: spark
+          protocol: TCP
+          containerPort: 7077
+        volumeMounts:
+        - name: spark-job
+          mountPath: /opt/spark-apps
+        - name: spark-data
+          mountPath: /opt/spark-data
+        env:
+        - name: SPARK_LOCAL_IP
+          value: 0.0.0.0
+        - name: SPARK_WORKLOAD
+          value: master
+      volumes:
+      - name: spark-job
+        hostPath:
+          path: /var/tmp/sparkJob
+      - name: spark-data
+        hostPath:
+          path: /var/tmp/data
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: spark-worker
+  namespace: spark
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: spark-worker
+  template:
+    metadata:
+      labels:
+        app: spark-worker
+    spec:
+#      affinity:
+#        nodeAffinity:
+#          requiredDuringSchedulingIgnoredDuringExecution:
+#            nodeSelectorTerms:
+#            - matchExpressions:
+#              - key: node
+#                operator: In
+#                values:
+#                - "181"
+      containers:
+      - name: spark-worker
+        image: morgandoc07/our-own-apache-spark:3.4.0
+        ports:
+        - name: ui
+          containerPort: 8080
+        - name: spark
+          containerPort: 7000
+        volumeMounts:
+        - name: spark-job
+          mountPath: /opt/spark-apps
+        - name: spark-data
+          mountPath: /opt/spark-data
+        env:
+        - name: SPARK_MASTER
+          value: spark://spark-master-service.spark:7077
+        - name: SPARK_WORKER_CORES
+          value: "2"
+        - name: SPARK_WORKER_MEMORY
+          value: "2G"
+        - name: SPARK_DRIVER_MEMORY
+          value: "2G"
+        - name: SPARK_EXECUTOR_MEMORY
+          value: "2G"
+        - name: SPARK_WORKLOAD
+          value: worker
+        - name: SPARK_LOCAL_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+      volumes:
+      - name: spark-job
+        hostPath:
+          path: /var/tmp/sparkWork
+      - name: spark-data
+        hostPath:
+          path: /var/tmp/data

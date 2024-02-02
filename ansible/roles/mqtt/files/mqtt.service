@@ -4,7 +4,7 @@ Description=MQTT Python Service
 [Service]
 ExecStart=/usr/bin/python3 /var/mqtt/main.py
 Restart=always
-RestartSec=30
+RestartSec=10
 
 [Install]
 WantedBy=multi-user.target

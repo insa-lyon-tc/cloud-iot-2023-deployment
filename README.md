@@ -146,6 +146,18 @@ Chaque partie indépendante doit donc être terminée pour la prochaine séance 
 - Tout tourne donc on voudrait faire une réservation d'une semaine/un mois et laisser tourner pour voir le SLA qu'on arrive à avoir. Il faudra donc faire une estimation du nombre d'images à envoyer pour ne pas saturer la BDD. 
 - Retour sur YOUPI : ça marche bien. Pour cette matière, ne pas réserver de septembre à février. Réserver moins longtemps car sinon les pods sont à bout de souffle. La partie computing sur des nuc aurait été intéressante. 
 
+### Computing :
+
+
+Commande de lancement de la partie computing avec le fetch des images des topics et leurs traitement puis renvoie vers les topics processed :
+- à adapter au deploiement. L'ip du pod du master de ce deploiement est 10.42.8.8 . Si l'ip change, il la changer dans le commande. 
+- Il faut avoir le fichier sparkjob2.py et le dossier tf-model dans le dossier /opt/spark-apps de tous les pods ( master et workers)
+
+```
+spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.4.3 --conf spark.executor.memory=2g --conf spark.driver.port=32831 --conf spark.driver.host=10.42.8.8 --master spark://10.42.8.8:7077 --deploy-mode client /opt/spark-apps/sparkjob2.py
+
+```
+
 ## Procédure de mise en place de votre architecture Cloud IoT
 
 
